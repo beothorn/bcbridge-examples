@@ -1,0 +1,4 @@
+applications:
+  - name: "HelloWorld"
+    jarsPath: "./app/build/libs"
+    mainClass: "com.github.beothorn.App"
