@@ -1,0 +1,8 @@
+applications:
+  - name: "RedirectionOnSameApp"
+    jarsPath: "./app/build/libs"
+    mainClass: "com.github.beothorn.App"
+    redirections:
+      - sourceApplication: "RedirectionOnSameApp"
+        sourceMethod: "com.github.beothorn.App#a"
+        destinationMethod: "com.github.beothorn.App#b"
