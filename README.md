@@ -15,5 +15,11 @@ Minimal setup to run bcbridge.
 
 ## Redirection on same app
 
-How to redirect a function inside a single app.
+Redirects a function inside a single app.
+
+## Multitenant  
+
+Runs two apps on the same process with different environment variable.
+
+
 

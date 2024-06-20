@@ -1,0 +1,17 @@
+applications:
+  - name: "MultitenantEN"
+    jarsPath: "./app/build/libs"
+    mainClass: "com.github.beothorn.App"
+    environmentVariables:
+      - name: "LANG"
+        value: "en_us"
+      - name: "PORT"
+        value: "8080"
+  - name: "MultitenantPT"
+    jarsPath: "./app/build/libs"
+    mainClass: "com.github.beothorn.App"
+    environmentVariables:
+      - name: "LANG"
+        value: "pt_br"
+      - name: "PORT"
+        value: "8081"
