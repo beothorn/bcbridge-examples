@@ -1,0 +1,15 @@
+applications:
+  - name: "Server"
+    jarsPath: "./server/target/output"
+    mainClass: "com.github.beothorn.App"
+    commandArguments: ["doNotRunServerd"]
+  - name: "Client"
+    jarsPath: "./client/target/output"
+    mainClass: "com.github.beothorn.App"
+  - name: "Mapper"
+    jarsPath: "./mapper/target/output"
+    mainClass: "com.github.beothorn.App"
+    redirections:
+      - sourceApplication: "Client"
+        sourceMethod: "com.github.beothorn.grpc.HelloServiceGrpc.HelloServiceBlockingStub#hello"
+        destinationMethod: "com.github.beothorn.App#intercept"
