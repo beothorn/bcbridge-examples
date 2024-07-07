@@ -8,7 +8,7 @@ import io.grpc.ManagedChannelBuilder;
 
 public class App
 {
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws InterruptedException {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8080)
                 .usePlaintext()
                 .build();
@@ -16,13 +16,22 @@ public class App
         HelloServiceGrpc.HelloServiceBlockingStub stub
                 = HelloServiceGrpc.newBlockingStub(channel);
 
-        System.out.println("Sending test");
-        HelloResponse helloResponse = stub.hello(HelloRequest.newBuilder()
-                .setMessage("Test")
-                .build());
+        int count = 0;
+        while (count++ < 10000){
+            System.out.println("Sending test "+count);
+            HelloResponse helloResponse = stub.hello(HelloRequest.newBuilder()
+                    .setMessage("Test "+count)
+                    .build());
 
-        System.out.println("Received " + helloResponse.getResponse());
+            System.out.println("Received " + helloResponse.getResponse());
+
+            Thread.sleep(500);
+        }
 
         channel.shutdown();
+    }
+
+    public static void log(String s) {
+        System.out.println("Do nothing");
     }
 }

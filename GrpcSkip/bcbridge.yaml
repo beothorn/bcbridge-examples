@@ -1,8 +1,14 @@
+# There are 3 applications Server, Client and Mapper
+# Mapper exists only because the method signatures for Server and Client
+# that we want to bridge don't match
 applications:
   - name: "Server"
     jarsPath: "./server/target/output"
     mainClass: "com.github.beothorn.App"
-    commandArguments: ["doNotRunServerd"]
+    redirections:
+      - sourceApplication: "Mapper"
+        sourceMethod: "com.github.beothorn.ServerPlaceholder#hello"
+        destinationMethod: "com.github.beothorn.grpc.HelloServiceImpl#hello"
   - name: "Client"
     jarsPath: "./client/target/output"
     mainClass: "com.github.beothorn.App"
@@ -10,6 +16,9 @@ applications:
     jarsPath: "./mapper/target/output"
     mainClass: "com.github.beothorn.App"
     redirections:
+      - sourceApplication: "Server"
+        sourceMethod: "io.grpc.stub.StreamObserver#onNext"
+        destinationMethod: "com.github.beothorn.ServerPlaceholder#onNext"
       - sourceApplication: "Client"
-        sourceMethod: "com.github.beothorn.grpc.HelloServiceGrpc.HelloServiceBlockingStub#hello"
-        destinationMethod: "com.github.beothorn.App#intercept"
+        sourceMethod: "com.github.beothorn.grpc.HelloServiceGrpc$HelloServiceBlockingStub#hello"
+        destinationMethod: "com.github.beothorn.HelloMapper#hello"

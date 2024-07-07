@@ -21,5 +21,6 @@ Redirects a function inside a single app.
 
 Runs two apps on the same process with different environment variable.
 
+## GRPC skip
 
-
+Runs three apps, a client, a server and a mapper. Client is supposed to talk to server through the neywork using GRPC, but the mapper intercepts the calls and send them directly to the server.
