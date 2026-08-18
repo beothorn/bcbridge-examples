@@ -35,9 +35,9 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>br.com.isageek</groupId>
+        <groupId>com.github.beothorn</groupId>
         <artifactId>bcbridge-maven-plugin</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
         <configuration>
           <bridges>
             <bridge>
