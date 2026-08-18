@@ -52,6 +52,12 @@ public final class App {
         System.out.println("===============");
         app.exitThisAndArgumentsOriginal("exit this and arguments");
         System.out.println("===============");
+        System.out.println(app.redirectArrayOriginal("redirect array", 1));
+        System.out.println("===============");
+        app.enterArrayOriginal("enter array", 2);
+        System.out.println("===============");
+        app.exitArrayOriginal("exit array", 3);
+        System.out.println("===============");
     }
 
     public void defaultMatcherOriginal(String value) {
@@ -142,6 +148,18 @@ public final class App {
         printOriginal("exit this and arguments", value);
     }
 
+    public String redirectArrayOriginal(String value, int number) {
+        return value + number;
+    }
+
+    public void enterArrayOriginal(String value, int number) {
+        printOriginal("enter array", value + ", " + number);
+    }
+
+    public void exitArrayOriginal(String value, int number) {
+        printOriginal("exit array", value + ", " + number);
+    }
+
     public static void defaultMatcherRedirected(String value) {
         printRedirected("default nameContains", value);
     }
@@ -228,6 +246,22 @@ public final class App {
 
     public static void exitThisAndArgumentsDestination(Object receiver, String value) {
         printHook("exit this and arguments", receiver.getClass().getSimpleName() + ", " + value);
+    }
+
+    public static String redirectArrayDestination(Object[] arguments) {
+        return destinationResult("redirect array", formatArguments(arguments));
+    }
+
+    public static void enterArrayDestination(Object[] arguments) {
+        printHook("enter array", formatArguments(arguments));
+    }
+
+    public static void exitArrayDestination(Object[] arguments) {
+        printHook("exit array", formatArguments(arguments));
+    }
+
+    private static String formatArguments(Object[] arguments) {
+        return arguments[0] + ", " + arguments[1] + " (" + arguments[1].getClass().getSimpleName() + ")";
     }
 
     private static void printOriginal(String matcher, String value) {

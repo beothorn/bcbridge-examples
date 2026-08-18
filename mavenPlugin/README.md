@@ -107,31 +107,33 @@ The mixed-case arguments in the ignore-case examples are intentional. Inspect th
 
 ## Bridge option examples
 
-The final twelve bridges in `pom.xml` demonstrate all four parameter combinations for every type. All source
-methods take one `String value`, which makes the required destination signatures easy to compare:
+The final bridges in `pom.xml` demonstrate the three `captureArguments` behaviors for every bridge type:
 
 | Options | Required destination parameters |
 | --- | --- |
-| Defaults (`captureArguments=true`, `thisAsParameter=false`) | `(String value)` |
-| `captureArguments=false` | `()` |
-| `captureArguments=false`, `thisAsParameter=true` | `(Object receiver)` |
-| `captureArguments=true`, `thisAsParameter=true` | `(Object receiver, String value)` |
+| `captureArguments` omitted | `()` |
+| `captureArguments=args` | The source parameters, unchanged |
+| `captureArguments=array` | `(Object[] arguments)` |
+| Omitted, `thisAsParameter=true` | `(Object receiver)` |
+| `captureArguments=args`, `thisAsParameter=true` | `(Object receiver, <source parameters>)` |
+| `captureArguments=array`, `thisAsParameter=true` | `(Object receiver, Object[] arguments)` |
 
 When `thisAsParameter` is true, the first parameter must be declared as exactly `Object`. When
-`captureArguments` is true, every remaining parameter must exactly match the source method's parameters, in the
-same order. `captureArguments` defaults to true and `thisAsParameter` defaults to false, so the plain usage only
-needs a `type`.
+`captureArguments` is `args`, every remaining parameter must exactly match the source method's parameters, in the
+same order. With `array`, reference arguments are placed directly in the array and primitive arguments are boxed.
+Omitting `captureArguments` passes nothing. `thisAsParameter` defaults to false.
 
 ### `redirect`
 
 `redirect` replaces the original body. Its destination return type must also exactly match the source return type.
-The example source methods return `String`, so all four destinations return `String`:
+The redirect example source methods return `String`, so their destinations also return `String`:
 
 ```java
 String redirectArgumentsDestination(String value)
 String redirectNoArgumentsDestination()
 String redirectThisOnlyDestination(Object receiver)
 String redirectThisAndArgumentsDestination(Object receiver, String value)
+String redirectArrayDestination(Object[] arguments)
 ```
 
 The plain and combined XML configurations are:
@@ -141,29 +143,31 @@ The plain and combined XML configurations are:
   <source>named(br.com.isageek.bcbridge.example.App)#named(redirectArgumentsOriginal)</source>
   <dest>br.com.isageek.bcbridge.example.App#redirectArgumentsDestination</dest>
   <type>redirect</type>
+  <captureArguments>args</captureArguments>
 </bridge>
 
 <bridge>
   <source>named(br.com.isageek.bcbridge.example.App)#named(redirectThisAndArgumentsOriginal)</source>
   <dest>br.com.isageek.bcbridge.example.App#redirectThisAndArgumentsDestination</dest>
   <type>redirect</type>
-  <captureArguments>true</captureArguments>
+  <captureArguments>args</captureArguments>
   <thisAsParameter>true</thisAsParameter>
 </bridge>
 ```
 
-The adjacent redirect examples in `pom.xml` show `captureArguments=false` both without and with the receiver.
+The adjacent redirect examples omit `captureArguments` for no arguments and use `array` for one `Object[]`.
 
 ### `OnMethodEnter`
 
-`OnMethodEnter` calls its destination before the original body. The destination must return `void`. The four
-example signatures are:
+`OnMethodEnter` calls its destination before the original body. The destination must return `void`. Example
+signatures include:
 
 ```java
 void enterArgumentsDestination(String value)
 void enterNoArgumentsDestination()
 void enterThisOnlyDestination(Object receiver)
 void enterThisAndArgumentsDestination(Object receiver, String value)
+void enterArrayDestination(Object[] arguments)
 ```
 
 For example, this receiver-only hook does not capture the source `String`:
@@ -173,7 +177,6 @@ For example, this receiver-only hook does not capture the source `String`:
   <source>named(br.com.isageek.bcbridge.example.App)#named(enterThisOnlyOriginal)</source>
   <dest>br.com.isageek.bcbridge.example.App#enterThisOnlyDestination</dest>
   <type>OnMethodEnter</type>
-  <captureArguments>false</captureArguments>
   <thisAsParameter>true</thisAsParameter>
 </bridge>
 ```
@@ -181,13 +184,14 @@ For example, this receiver-only hook does not capture the source `String`:
 ### `OnMethodExit`
 
 `OnMethodExit` calls its destination after the original method returns normally. The destination must return
-`void`. The four example signatures are:
+`void`. Example signatures include:
 
 ```java
 void exitArgumentsDestination(String value)
 void exitNoArgumentsDestination()
 void exitThisOnlyDestination(Object receiver)
 void exitThisAndArgumentsDestination(Object receiver, String value)
+void exitArrayDestination(Object[] arguments)
 ```
 
 This combined case receives the source instance followed by all source arguments:
@@ -197,10 +201,10 @@ This combined case receives the source instance followed by all source arguments
   <source>named(br.com.isageek.bcbridge.example.App)#named(exitThisAndArgumentsOriginal)</source>
   <dest>br.com.isageek.bcbridge.example.App#exitThisAndArgumentsDestination</dest>
   <type>OnMethodExit</type>
-  <captureArguments>true</captureArguments>
+  <captureArguments>args</captureArguments>
   <thisAsParameter>true</thisAsParameter>
 </bridge>
 ```
 
-See the final twelve `<bridge>` entries in `pom.xml` for every complete configuration and `App.java` for the
-matching source and destination methods.
+See the final `<bridge>` entries in `pom.xml` and `App.java` for matching source and destination methods. The array
+examples use both a `String` and an `int`, showing that all values arrive in one array and the `int` is boxed.

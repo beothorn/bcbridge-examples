@@ -45,123 +45,151 @@
               <source>bcbridge.example.App#defaultMatcherOriginal</source>
               <dest>br.com.isageek.bcbridge.example.App#defaultMatcherRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(namedOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#namedRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>namedIgnoreCase(BR.COM.ISAGEEK.BCBRIDGE.EXAMPLE.APP)#namedIgnoreCase(NAMEDIGNORECASEORIGINAL)</source>
               <dest>br.com.isageek.bcbridge.example.App#namedIgnoreCaseRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>nameStartsWith(br.com.isageek.bcbridge.example)#nameStartsWith(nameStartsWithOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#nameStartsWithRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>nameStartsWithIgnoreCase(BR.COM.ISAGEEK.BCBRIDGE.EXAMPLE)#nameStartsWithIgnoreCase(NAMESTARTSWITHIGNORECASEORIGINAL)</source>
               <dest>br.com.isageek.bcbridge.example.App#nameStartsWithIgnoreCaseRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>nameEndsWith(App)#nameEndsWith(nameEndsWithOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#nameEndsWithRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>nameEndsWithIgnoreCase(APP)#nameEndsWithIgnoreCase(NAMEENDSWITHIGNORECASEORIGINAL)</source>
               <dest>br.com.isageek.bcbridge.example.App#nameEndsWithIgnoreCaseRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>nameContains(bcbridge.example)#nameContains(ContainsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#nameContainsRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>nameContainsIgnoreCase(BCBRIDGE.EXAMPLE)#nameContainsIgnoreCase(CONTAINSIGNORECASEORIGINAL)</source>
               <dest>br.com.isageek.bcbridge.example.App#nameContainsIgnoreCaseRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>nameMatches(br[.]com[.]isageek[.]bcbridge[.]example[.]App)#nameMatches(nameMatchesOrigina[l])</source>
               <dest>br.com.isageek.bcbridge.example.App#nameMatchesRedirected</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(redirectArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#redirectArgumentsDestination</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(redirectNoArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#redirectNoArgumentsDestination</dest>
               <type>redirect</type>
-              <captureArguments>false</captureArguments>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(redirectThisOnlyOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#redirectThisOnlyDestination</dest>
               <type>redirect</type>
-              <captureArguments>false</captureArguments>
               <thisAsParameter>true</thisAsParameter>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(redirectThisAndArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#redirectThisAndArgumentsDestination</dest>
               <type>redirect</type>
+              <captureArguments>args</captureArguments>
               <thisAsParameter>true</thisAsParameter>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(enterArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#enterArgumentsDestination</dest>
               <type>OnMethodEnter</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(enterNoArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#enterNoArgumentsDestination</dest>
               <type>OnMethodEnter</type>
-              <captureArguments>false</captureArguments>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(enterThisOnlyOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#enterThisOnlyDestination</dest>
               <type>OnMethodEnter</type>
-              <captureArguments>false</captureArguments>
               <thisAsParameter>true</thisAsParameter>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(enterThisAndArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#enterThisAndArgumentsDestination</dest>
               <type>OnMethodEnter</type>
+              <captureArguments>args</captureArguments>
               <thisAsParameter>true</thisAsParameter>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(exitArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#exitArgumentsDestination</dest>
               <type>OnMethodExit</type>
+              <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(exitNoArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#exitNoArgumentsDestination</dest>
               <type>OnMethodExit</type>
-              <captureArguments>false</captureArguments>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(exitThisOnlyOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#exitThisOnlyDestination</dest>
               <type>OnMethodExit</type>
-              <captureArguments>false</captureArguments>
               <thisAsParameter>true</thisAsParameter>
             </bridge>
             <bridge>
               <source>named(br.com.isageek.bcbridge.example.App)#named(exitThisAndArgumentsOriginal)</source>
               <dest>br.com.isageek.bcbridge.example.App#exitThisAndArgumentsDestination</dest>
               <type>OnMethodExit</type>
+              <captureArguments>args</captureArguments>
               <thisAsParameter>true</thisAsParameter>
+            </bridge>
+            <bridge>
+              <source>named(br.com.isageek.bcbridge.example.App)#named(redirectArrayOriginal)</source>
+              <dest>br.com.isageek.bcbridge.example.App#redirectArrayDestination</dest>
+              <type>redirect</type>
+              <captureArguments>array</captureArguments>
+            </bridge>
+            <bridge>
+              <source>named(br.com.isageek.bcbridge.example.App)#named(enterArrayOriginal)</source>
+              <dest>br.com.isageek.bcbridge.example.App#enterArrayDestination</dest>
+              <type>OnMethodEnter</type>
+              <captureArguments>array</captureArguments>
+            </bridge>
+            <bridge>
+              <source>named(br.com.isageek.bcbridge.example.App)#named(exitArrayOriginal)</source>
+              <dest>br.com.isageek.bcbridge.example.App#exitArrayDestination</dest>
+              <type>OnMethodExit</type>
+              <captureArguments>array</captureArguments>
             </bridge>
           </bridges>
         </configuration>
