@@ -26,7 +26,9 @@ original using nameEndsWith: Hello from code
 original using nameEndsWithIgnoreCase: Hello from code
 original using nameContains: Hello from code
 original using nameContainsIgnoreCase: Hello from code
-original using nameMatches: Hello from code
+original using nameMatches: regex match A
+original using nameMatches: regex match B
+original using nameMatches: regex non-match C
 original: redirect arguments
 original: redirect no arguments
 original: redirect this only
@@ -66,7 +68,9 @@ redirected using nameEndsWith: Hello from code
 redirected using nameEndsWithIgnoreCase: Hello from code
 redirected using nameContains: Hello from code
 redirected using nameContainsIgnoreCase: Hello from code
-redirected using nameMatches: Hello from code
+redirected using nameMatches: regex match A
+redirected using nameMatches: regex match B
+original using nameMatches: regex non-match C
 destination redirect arguments received: redirect arguments
 destination redirect no arguments received: not captured
 destination redirect this only received: App
@@ -99,7 +103,9 @@ the same matcher for its class and method portions where practical:
 - `nameStartsWith` and `nameStartsWithIgnoreCase` demonstrate prefix matching.
 - `nameEndsWith` and `nameEndsWithIgnoreCase` demonstrate suffix matching.
 - `nameContains` and `nameContainsIgnoreCase` demonstrate explicit substring matching.
-- `nameMatches` demonstrates regular-expression matching.
+- `nameMatches` uses `nameMatchesOriginal[AB]` to demonstrate a regular-expression character class. The otherwise
+  identical `nameMatchesOriginalC` method proves the regex does not overmatch: `A` and `B` are redirected, while
+  `C` still runs its original implementation.
 
 The mixed-case arguments in the ignore-case examples are intentional. Inspect the `<bridges>` section of
 `pom.xml` for the complete expressions. Running `mvn clean compile` shows the original implementations; running

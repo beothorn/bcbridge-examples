@@ -26,7 +26,11 @@ public final class App {
         System.out.println("===============");
         app.nameContainsIgnoreCaseOriginal("Hello from code");
         System.out.println("===============");
-        app.nameMatchesOriginal("Hello from code");
+        app.nameMatchesOriginalA("regex match A");
+        System.out.println("===============");
+        app.nameMatchesOriginalB("regex match B");
+        System.out.println("===============");
+        app.nameMatchesOriginalC("regex non-match C");
         System.out.println("===============");
         app.redirectArgumentsOriginal("redirect arguments");
         System.out.println("===============");
@@ -96,7 +100,15 @@ public final class App {
         printOriginal("nameContainsIgnoreCase", value);
     }
 
-    public void nameMatchesOriginal(String value) {
+    public void nameMatchesOriginalA(String value) {
+        printOriginal("nameMatches", value);
+    }
+
+    public void nameMatchesOriginalB(String value) {
+        printOriginal("nameMatches", value);
+    }
+
+    public void nameMatchesOriginalC(String value) {
         printOriginal("nameMatches", value);
     }
 

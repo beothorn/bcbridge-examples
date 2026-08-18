@@ -41,7 +41,6 @@
         <configuration>
           <bridges>
             <bridge>
-              <sourceApplication>bcbridge-maven-plugin-example</sourceApplication>
               <source>bcbridge.example.App#defaultMatcherOriginal</source>
               <dest>br.com.isageek.bcbridge.example.App#defaultMatcherRedirected</dest>
               <type>redirect</type>
@@ -96,7 +95,7 @@
               <captureArguments>args</captureArguments>
             </bridge>
             <bridge>
-              <source>nameMatches(br[.]com[.]isageek[.]bcbridge[.]example[.]App)#nameMatches(nameMatchesOrigina[l])</source>
+              <source>nameMatches(br[.]com[.]isageek[.]bcbridge[.]example[.]App)#nameMatches(nameMatchesOriginal[AB])</source>
               <dest>br.com.isageek.bcbridge.example.App#nameMatchesRedirected</dest>
               <type>redirect</type>
               <captureArguments>args</captureArguments>
