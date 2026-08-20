@@ -1,5 +1,7 @@
 package br.com.isageek.bcbridge.example;
 
+import org.apache.commons.text.StringEscapeUtils;
+
 public final class App {
 
     public App() {
@@ -61,6 +63,10 @@ public final class App {
         app.enterArrayOriginal("enter array", 2);
         System.out.println("===============");
         app.exitArrayOriginal("exit array", 3);
+        System.out.println("===============");
+        String html = "<script>alert('bcbridge');</script> & \"quoted\"";
+        System.out.println("Commons Text input:  " + html);
+        System.out.println("Commons Text output: " + StringEscapeUtils.escapeHtml4(html));
         System.out.println("===============");
     }
 
@@ -270,6 +276,20 @@ public final class App {
 
     public static void exitArrayDestination(Object[] arguments) {
         printHook("exit array", formatArguments(arguments));
+    }
+
+    public static void logEscapeHtml4Enter(String input) {
+        long sensitiveCharacters = input == null ? 0 : input.chars()
+                .filter(character -> character == '<'
+                        || character == '>'
+                        || character == '&'
+                        || character == '"'
+                        || character == '\'')
+                .count();
+        System.out.println("BCBridge entered org.apache.commons.text.StringEscapeUtils#escapeHtml4");
+        System.out.println("  thread: " + Thread.currentThread().getName());
+        System.out.println("  input length: " + (input == null ? "null" : input.length()));
+        System.out.println("  HTML-sensitive characters: " + sensitiveCharacters);
     }
 
     private static String formatArguments(Object[] arguments) {
